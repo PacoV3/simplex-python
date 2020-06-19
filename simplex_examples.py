@@ -1,4 +1,4 @@
-from tablero import Tablero
+from tablero import Table
 
 def crear_tabla(cant_variables, cant_restricciones, lista_base):
     tabla_final = []
@@ -21,7 +21,6 @@ def crear_tabla(cant_variables, cant_restricciones, lista_base):
         tabla_final.append(lista_base)
     return tabla_final
 
-# z_function = True
 # base_row_vals = ["s1", "s2", "s3"]
 # base_col_vals = ["X1", "X2", "s1", "s2", "s3"]
 #                           CORECTO
@@ -40,7 +39,6 @@ def crear_tabla(cant_variables, cant_restricciones, lista_base):
 
 #                   Prueba Simplex 2 Fases
 #                           CORECTO
-# z_function = True
 # base_row_vals = ["r1", "r2", "r3"]
 # base_col_vals = ["X1", "X2", "e1", "e2", "e3", "r1", "r2", "r3"] 
 # z_function_vals = [False, [2000, 2000]]
@@ -51,17 +49,36 @@ def crear_tabla(cant_variables, cant_restricciones, lista_base):
 # OUTPUT = ['X1: 40.00', 'X2: 20.00', 'e3: 40.00', 'Z: 120,000.00']
 
 #                   Prueba Simplex 2 Fases
-z_function = False
-base_row_vals = ["r1", "r2"]
-base_col_vals = ["X1", "X2", "e1", "e2", "r1", "r2"] 
-z_function_vals = [False, [30, 40]]
-table_vals =    [[20, 30, -1, 0, 1, 0], 
-                 [40, 30, 0, -1, 0, 1]]
-solution_vals = [3000, 4000]
-last_row_vals = [0, 0, 0, 0, -1, -1, 0]
+# base_row_vals = ["r1", "r2"]
+# base_col_vals = ["X1", "X2", "e1", "e2", "r1", "r2"] 
+# z_function_vals = [False, [30, 40]]
+# table_vals =    [[20, 30, -1, 0, 1, 0], 
+#                  [40, 30, 0, -1, 0, 1]]
+# solution_vals = [3000, 4000]
+# last_row_vals = [0, 0, 0, 0, -1, -1, 0]
 # OUTPUT ESPERADO = x1 = 50, x2 = 66.667, z = 4166.667
 # OUTPUT = ['X1: 50.00', 'X2: 66.67', 'Z: 4,166.67']
 
-t = Tablero(z_function, base_row_vals, base_col_vals, table_vals, solution_vals, last_row_vals, z_function_vals)
+#                Prueba Simplex Problemario H1
+base_row_vals = ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "s1", "s2", "s3"]
+base_col_vals = ["X1", "X2", "X3", "X4", "X5", "X6", "X7", "e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8", "r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "s1", "s2", "s3"] 
+z_function_vals = [False, [50, 50, 16, 16, 16, 16, 16]]
+table_vals =    [[1, 1, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+                 [1, 1, 1, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+                 [0, 1, 1, 1, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], 
+                 [1, 0, 1, 1, 1, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], 
+                 [1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
+                 [1, 1, 0, 0, 1, 1, 1, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0], 
+                 [1, 1, 0, 0, 0, 1, 1, -1, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0], 
+                 [1, 1, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0], 
+                 [0, 0, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0], 
+                 [1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+                 [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+solution_vals = [10, 12, 14, 16, 18, 17, 15, 10, 56, 0, 12]
+last_row_vals = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0]
+# OUTPUT ESPERADO = x1 = 50, x2 = 66.667, z = 4166.667
+# OUTPUT = ['X1: 50.00', 'X2: 66.67', 'Z: 4,166.67']
+
+t = Table(base_row_vals, base_col_vals, table_vals, solution_vals, last_row_vals, z_function_vals)
 result = t.solve_table()
 print(result)

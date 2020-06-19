@@ -4,10 +4,11 @@ def truncate(n, decimals=0):
     multiplier = 10 ** decimals
     return int(n * multiplier) / multiplier
 
-class Tablero:
-    def __init__(self, mode, base_row, base_col, table, solution, last_row, z_function):
+class Table:
+    '''Clase para resolver Simplex de Minimización y Maximización, y Simplex de 2 Fases.'''
+    def __init__(self, base_row, base_col, table, solution, last_row, z_function):
         # True = Max, False = Min
-        self.mode = mode
+        self.mode = 0
         self.base_row = base_row
         self.base_col = base_col
         self.table = table
@@ -87,9 +88,12 @@ class Tablero:
         self.base_row[y] = self.base_col[x]
 
     def base_row_has_r(self):
+        # Por cada base en la base de filas
         for base in self.base_row:
+            # Si tiene una "r" regresa True
             if "r" in base:
                 return True
+        # Regresa False
         return False
 
     def is_basic_solution(self):
@@ -126,6 +130,12 @@ class Tablero:
             self.last_row.append(0)
 
     def change_table_and_solution(self, x, y):
+        print("Fila de Base: {}".format(self.base_col))
+        print("Columna de Base: {}".format(self.base_row))
+        print("Lista del tablero: {}".format(self.table))
+        print("Columna Solución: {}".format(self.solution))
+        print("Última fila + Solución en ella: {}".format(self.last_row))
+        print()
         # Crea una copia
         copy_of_table = deepcopy(self.table)
         copy_of_solution = deepcopy(self.solution)
