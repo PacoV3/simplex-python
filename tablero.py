@@ -165,9 +165,9 @@ class Table:
     def final_result(self):
         result = []
         for index in range(len(self.base_row)):
-            result.append('{}: {:,.2f}'.format(self.base_row[index], self.solution[index]))
+            result.append('{}: {:,.6f}'.format(self.base_row[index], self.solution[index]))
         result.sort()
-        result.append('{}: {:,.2f}'.format('Z', self.last_row[-1]))
+        result.append('{}: {:,.6f}'.format('Z', self.last_row[-1]))
         return result
         
     def solve_simplex(self):

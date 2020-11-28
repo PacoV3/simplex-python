@@ -1,7 +1,7 @@
 import xlwings as xw
 from tablero import Table
 
-wb = xw.Book('test_python.xlsx')
+wb = xw.Book('playerA.xlsx')
 # Primer Hoja en el documento
 simplex_sheet = wb.sheets[0]
 # O por nombre
@@ -25,10 +25,14 @@ for operator in relational_operators:
         base_col_vals.append('r' + str(count_of_r))
         base_row_vals.append('r' + str(count_of_r))
         base_col_vals.append('e' + str(count_of_r))
-    elif operator == '<=' or operator == '=':
+    elif operator == '<=':
         count_of_s += 1
         base_col_vals.append('s' + str(count_of_s))
         base_row_vals.append('s' + str(count_of_s))
+    elif operator == '=':
+        count_of_r += 1
+        base_col_vals.append('r' + str(count_of_r))
+        base_row_vals.append('r' + str(count_of_r))
 
 # Crear la ultima fila
 last_row_vals= []
@@ -42,7 +46,7 @@ last_row_vals.append(0)
 z_function_vals = [bool(z_values.pop(0)), z_values]
 # Agregar los valores r y s a la tabla
 table_vals = [row for row in values]
-for index,operator in enumerate(relational_operators):
+for index, operator in enumerate(relational_operators):
     for table_index in range(len(table_vals)):
         if index == table_index:
             if operator == '>=':
@@ -54,7 +58,7 @@ for index,operator in enumerate(relational_operators):
             elif operator == '<=':
                 table_vals[table_index].append(1)
             elif operator == '=':
-                table_vals[table_index].append(0)
+                table_vals[table_index].append(1)
         else:
             table_vals[table_index].append(0)
 
@@ -64,8 +68,8 @@ for row in table_vals:
 print(last_row_vals)
 print(solution_vals)
 print()
-# print(base_row_vals)
-# print(z_function_vals)
+print(base_row_vals)
+print(z_function_vals)
 
 t = Table(base_row_vals, base_col_vals, table_vals, solution_vals, last_row_vals, z_function_vals)
 result = t.solve_table()
